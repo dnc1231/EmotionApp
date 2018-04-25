@@ -3,6 +3,11 @@ from PIL import ImageTk, Image
 from tkinter import ttk
 import os
 import time
+from espeak import espeak
+import tkinter as tk
+
+global file
+file='/home/pi/Pictures/frames/gif_'
 
 def update(ind, frames):
     if (ind < len(frames)):
@@ -14,11 +19,6 @@ def update(ind, frames):
         root.mainloop()
         return;
 
-def donothing():
-   filewin = Toplevel(root)
-   button = Button(filewin, text="Do nothing button")
-   button.pack()
-
 ##h
 def joyEmotion():
     root.update()
@@ -28,15 +28,10 @@ def joyEmotion():
     if (currentEmotion == nextEmotion):
         return;
     else:
-        if (currentEmotion == 's'):
-            frames = [PhotoImage(file='/home/pi/Pictures/Emotion Gifs/frames/gif_s2h{0}.gif'.format(i)) for i in range(34)]
-            #frames = [PhotoImage(file='/home/pi/Pictures/Emotion Gifs/1 sec gifs/gif_s2h.gif',format = 'gif -index %i' %(i)) for i in range(34)]
-        elif (currentEmotion == 'n'):
-            frames = [PhotoImage(file='/home/pi/Pictures/Emotion Gifs/1 sec gifs/gif_n2h.gif',format = 'gif -index %i' %(i)) for i in range(34)]
-        elif (currentEmotion == 'c'):
-            frames = [PhotoImage(file='/home/pi/Pictures/Emotion Gifs/1 sec gifs/gif_c2h.gif',format = 'gif -index %i' %(i)) for i in range(34)]
-        elif (currentEmotion == 'f'):
-            frames = [PhotoImage(file='/home/pi/Pictures/Emotion Gifs/1 sec gifs/gif_f2h.gif',format = 'gif -index %i' %(i)) for i in range(34)]
+##        print sound
+##        if (sound):
+##            espeak.synth("hello")
+        frames = [PhotoImage(file='/home/pi/Pictures/frames/gif_{}2{}{}.gif'.format(currentEmotion, nextEmotion, i)) for i in range(34)]
         currentEmotion = nextEmotion
         root.after(0, update, 0, frames)
 
@@ -49,14 +44,7 @@ def sadnessEmotion():
     if (currentEmotion == nextEmotion):
         return;
     else:
-        if (currentEmotion == 'h'):
-            frames = [PhotoImage(file='/home/pi/Pictures/Emotion Gifs/1 sec gifs/gif_h2s.gif',format = 'gif -index %i' %(i)) for i in range(34)]
-        elif (currentEmotion == 'n'):
-            frames = [PhotoImage(file='/home/pi/Pictures/Emotion Gifs/1 sec gifs/gif_n2s.gif',format = 'gif -index %i' %(i)) for i in range(34)]
-        elif (currentEmotion == 'c'):
-            frames = [PhotoImage(file='/home/pi/Pictures/Emotion Gifs/1 sec gifs/gif_c2s.gif',format = 'gif -index %i' %(i)) for i in range(34)]
-        elif (currentEmotion == 'f'):
-            frames = [PhotoImage(file='/home/pi/Pictures/Emotion Gifs/1 sec gifs/gif_f2s.gif',format = 'gif -index %i' %(i)) for i in range(34)]
+        frames = [PhotoImage(file='/home/pi/Pictures/frames/gif_{}2{}{}.gif'.format(currentEmotion, nextEmotion, i)) for i in range(34)]
         currentEmotion = nextEmotion
         root.after(0, update, 0, frames)
 
@@ -69,14 +57,7 @@ def fearEmotion():
     if (currentEmotion == nextEmotion):
         return;
     else:
-        if (currentEmotion == 's'):
-            frames = [PhotoImage(file='/home/pi/Pictures/Emotion Gifs/1 sec gifs/gif_s2f.gif',format = 'gif -index %i' %(i)) for i in range(34)]
-        elif (currentEmotion == 'n'):
-            frames = [PhotoImage(file='/home/pi/Pictures/Emotion Gifs/1 sec gifs/gif_n2f.gif',format = 'gif -index %i' %(i)) for i in range(34)]
-        elif (currentEmotion == 'c'):
-            frames = [PhotoImage(file='/home/pi/Pictures/Emotion Gifs/1 sec gifs/gif_c2f.gif',format = 'gif -index %i' %(i)) for i in range(34)]
-        elif (currentEmotion == 'h'):
-            frames = [PhotoImage(file='/home/pi/Pictures/Emotion Gifs/1 sec gifs/gif_h2f.gif',format = 'gif -index %i' %(i)) for i in range(34)]
+        frames = [PhotoImage(file='/home/pi/Pictures/frames/gif_{}2{}{}.gif'.format(currentEmotion, nextEmotion, i)) for i in range(34)]
         currentEmotion = nextEmotion
         root.after(0, update, 0, frames)
 
@@ -89,17 +70,11 @@ def surpriseEmotion():
     if (currentEmotion == nextEmotion):
         return;
     else:
-        if (currentEmotion == 's'):
-            frames = [PhotoImage(file='/home/pi/Pictures/Emotion Gifs/1 sec gifs/gif_s2c.gif',format = 'gif -index %i' %(i)) for i in range(34)]
-        elif (currentEmotion == 'n'):
-            frames = [PhotoImage(file='/home/pi/Pictures/Emotion Gifs/1 sec gifs/gif_n2c.gif',format = 'gif -index %i' %(i)) for i in range(34)]
-        elif (currentEmotion == 'h'):
-            frames = [PhotoImage(file='/home/pi/Pictures/Emotion Gifs/1 sec gifs/gif_h2c.gif',format = 'gif -index %i' %(i)) for i in range(34)]
-        elif (currentEmotion == 'f'):
-            frames = [PhotoImage(file='/home/pi/Pictures/Emotion Gifs/1 sec gifs/gif_f2c.gif',format = 'gif -index %i' %(i)) for i in range(34)]
+        frames = [PhotoImage(file='/home/pi/Pictures/frames/gif_{}2{}{}.gif'.format(currentEmotion, nextEmotion, i)) for i in range(34)]
         currentEmotion = nextEmotion
         root.after(0, update, 0, frames)
 
+##n
 def neutralEmotion():
     root.update()
     global nextEmotion
@@ -108,29 +83,36 @@ def neutralEmotion():
     if (currentEmotion == nextEmotion):
         return;
     else:
-        if (currentEmotion == 's'):
-            frames = [PhotoImage(file='/home/pi/Pictures/Emotion Gifs/1 sec gifs/gif_s2n.gif',format = 'gif -index %i' %(i)) for i in range(34)]
-        elif (currentEmotion == 'c'):
-            frames = [PhotoImage(file='/home/pi/Pictures/Emotion Gifs/1 sec gifs/gif_c2n.gif',format = 'gif -index %i' %(i)) for i in range(34)]
-        elif (currentEmotion == 'h'):
-            frames = [PhotoImage(file='/home/pi/Pictures/Emotion Gifs/1 sec gifs/gif_h2n.gif',format = 'gif -index %i' %(i)) for i in range(34)]
-        elif (currentEmotion == 'f'):
-            frames = [PhotoImage(file='/home/pi/Pictures/Emotion Gifs/1 sec gifs/gif_f2n.gif',format = 'gif -index %i' %(i)) for i in range(34)]
+        frames = [PhotoImage(file='/home/pi/Pictures/frames/gif_{}2{}{}.gif'.format(currentEmotion, nextEmotion, i)) for i in range(34)]
         currentEmotion = nextEmotion
         root.after(0, update, 0, frames)
 
 
 ##d
 def disgustEmotion():
-    return;
+    root.update()
+    global nextEmotion
+    nextEmotion = 'd'
+    global currentEmotion
+    if (currentEmotion == nextEmotion):
+        return;
+    else:
+        frames = [PhotoImage(file='/home/pi/Pictures/frames/gif_{}2{}{}.gif'.format(currentEmotion, nextEmotion, i)) for i in range(34)]
+        currentEmotion = nextEmotion
+        root.after(0, update, 0, frames)
 
 ##a
 def angerEmotion():
-    return;
-
-##e
-def anticipationEmotion():
-    return;
+    root.update()
+    global nextEmotion
+    nextEmotion = 'a'
+    global currentEmotion
+    if (currentEmotion == nextEmotion):
+        return;
+    else:
+        frames = [PhotoImage(file='/home/pi/Pictures/frames/gif_{}2{}{}.gif'.format(currentEmotion, nextEmotion, i)) for i in range(34)]
+        currentEmotion = nextEmotion
+        root.after(0, update, 0, frames)
 
 def helpCommand():
     filewin = Toplevel(root)
@@ -141,18 +123,22 @@ def helpCommand():
 
 root = Tk()
 root.title("ADAM Therapeutic Robot")
+
+##sound = tk.BooleanVar()
+##sound.set(True)
+
 menubar = Menu(root)
 emotionMenu = Menu(menubar, tearoff=0)
 emotionMenu.add_command(label="Joy", command=joyEmotion)
 emotionMenu.add_command(label="Sadness", command=sadnessEmotion)
 emotionMenu.add_command(label="Fear", command=fearEmotion)
 emotionMenu.add_command(label="Surprise", command=surpriseEmotion)
-emotionMenu.add_command(label="Disgust", command=donothing)
-emotionMenu.add_command(label="Anger", command=donothing)
-emotionMenu.add_command(label="Anticipation", command=donothing)
+emotionMenu.add_command(label="Disgust", command=disgustEmotion)
+emotionMenu.add_command(label="Anger", command=angerEmotion)
 emotionMenu.add_command(label="Resting Face", command=neutralEmotion)
 
 emotionMenu.add_separator()
+##emotionMenu.add_checkbutton(label="Sound", onvalue=True, offvalue=False, variable=sound)
 emotionMenu.add_command(label="Help", command=helpCommand)
 menubar.add_cascade(label="Emotions", menu=emotionMenu)
 root.config(menu=menubar)
@@ -162,7 +148,7 @@ currentEmotion = 'n'
 global nextEmotion
 nextEmotion = 'n'
 
-h2n = [PhotoImage(file='/home/pi/Pictures/Emotion Gifs/1 sec gifs/gif_h2n.gif',format = 'gif -index %i' %(i)) for i in range(34)]
+h2n = [PhotoImage(file='/home/pi/Pictures/frames/gif_h2n{0}.gif'.format(i)) for i in range(34)]
 
 label = Label(root)
 label.pack()
